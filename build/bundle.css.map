@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n  let price = 10.23;\n  let tip = 15;\n  const formatter = new Intl.NumberFormat(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\",\n  });\n\n  function calculatTip(price, tip) {\n    return formatter.format(price * (tip / 100));\n  }\n\n  function changeTip(newTip) {\n    tip = newTip;\n  }\n\n  $: calculatedTip = calculatTip(price, tip);\n</script>\n\n<style>\n  h1,\n  h2 {\n    text-align: center;\n  }\n  input#tip {\n    width: 100%;\n  }\n  .tip-btn {\n    width: 100%;\n  }\n</style>\n\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"column\">\n      <h1>Tip Calculator</h1>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"column\">\n      <label for=\"price\">Meal Price</label>\n      <input\n        bind:value={price}\n        type=\"number\"\n        id=\"price\"\n        placeholder=\"Total\"\n        min=\"0\" />\n      <label for=\"tip\">Tip ({tip}%)</label>\n      <input\n        bind:value={tip}\n        type=\"range\"\n        min=\"0\"\n        max=\"100\"\n        step=\"1\"\n        id=\"tip\" />\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"column\">\n      <button\n        on:click={() => changeTip(15)}\n        class:button-outline={tip != 15}\n        class=\"button tip-btn\">15%</button>\n    </div>\n    <div class=\"column\">\n      <button\n        on:click={() => changeTip(25)}\n        class:button-outline={tip != 25}\n        class=\"button button-outline tip-btn\">25%</button>\n    </div>\n    <div class=\"column\">\n      <button\n        on:click={() => changeTip(30)}\n        class:button-outline={tip != 30}\n        class=\"button button-outline tip-btn\">30%</button>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"column\">\n      <h2>Calculated Tip: {calculatedTip}</h2>\n    </div>\n  </div>\n</div>\n"
+  ],
+  "names": [],
+  "mappings": "AAoBE,gBAAE,CACF,EAAE,cAAC,CAAC,AACF,UAAU,CAAE,MAAM,AACpB,CAAC,AACD,KAAK,IAAI,cAAC,CAAC,AACT,KAAK,CAAE,IAAI,AACb,CAAC,AACD,QAAQ,cAAC,CAAC,AACR,KAAK,CAAE,IAAI,AACb,CAAC"
+}
