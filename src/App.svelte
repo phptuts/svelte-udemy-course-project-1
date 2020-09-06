@@ -10,6 +10,10 @@
     return formatter.format(price * (tip / 100));
   }
 
+  function changeTip(newTip) {
+    tip = newTip;
+  }
+
   $: calculatedTip = calculatTip(price, tip);
 </script>
 
@@ -19,6 +23,9 @@
     text-align: center;
   }
   input#tip {
+    width: 100%;
+  }
+  .tip-btn {
     width: 100%;
   }
 </style>
@@ -46,6 +53,26 @@
         max="100"
         step="1"
         id="tip" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <button
+        on:click={() => changeTip(15)}
+        class:button-outline={tip != 15}
+        class="button tip-btn">15%</button>
+    </div>
+    <div class="column">
+      <button
+        on:click={() => changeTip(25)}
+        class:button-outline={tip != 25}
+        class="button button-outline tip-btn">25%</button>
+    </div>
+    <div class="column">
+      <button
+        on:click={() => changeTip(30)}
+        class:button-outline={tip != 30}
+        class="button button-outline tip-btn">30%</button>
     </div>
   </div>
   <div class="row">
